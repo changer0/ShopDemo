@@ -12,6 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/main_toolbar"
 
@@ -21,7 +22,7 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <Button
-                android:id="@+id/btn_edit"
+                android:id="@+id/main_btn_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
@@ -37,26 +38,48 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <ListView
-            android:id="@+id/cart_list"
+            android:id="@+id/main_cart_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <LinearLayout
-            android:background="#9999"
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/text_total"
-            android:textSize="25sp"
-            android:text="a"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#9999"
+            android:layout_gravity="bottom"
+
+        >
+
+            <Button
+                android:visibility="invisible"
+                android:id="@+id/main_select_all"
+                android:text="全选"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:layout_toRightOf="@id/main_select_all"
+                android:id="@+id/main_text_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textSize="25sp"/>
+
+            <Button
+                android:layout_alignParentRight="true"
+                android:id="@+id/main_btn_pay"
+                android:text="支付"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        </RelativeLayout>
 
     </FrameLayout>
-
-
 
 
 </LinearLayout>

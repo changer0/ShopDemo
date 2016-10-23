@@ -27,17 +27,12 @@ import java.util.Locale;
 public class CartListAdapter extends BaseAdapter {
     private Context mContext;
     private List<CartItem> mItems;
-    private boolean isEditMode;
+    public boolean isEditMode;
 
 
     public CartListAdapter(Context context, List<CartItem> items) {
         mContext = context;
         mItems = items;
-    }
-
-    public void switchEditMode() {
-        isEditMode = !isEditMode;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -48,12 +43,10 @@ public class CartListAdapter extends BaseAdapter {
         }
         return ret;
     }
-
     @Override
     public Object getItem(int position) {
         return mItems.get(position);
     }
-
     @Override
     public long getItemId(int position) {
         return mItems.get(position).getProductId();
@@ -73,7 +66,7 @@ public class CartListAdapter extends BaseAdapter {
             holder = new ViewHolder(ret);
             ret.setTag(holder);
         }
-
+        //show data info
         CartItem cartItem = mItems.get(position);
         holder.setCartItem(cartItem);
         holder.mImageView.setImageResource(R.mipmap.ic_launcher);
@@ -83,11 +76,12 @@ public class CartListAdapter extends BaseAdapter {
         holder.mTextCount.setText(String.valueOf(count));
 
         holder.mCheckBox.setChecked(cartItem.isChecked());
-
         //如果Adapter中, 根据状态一个控件显示不同状态, 那么条件必须要判断全 true/false
-
-
-        holder.mButtonDec.setClickable(count != 1);
+        if (count == 1) {
+            holder.mButtonDec.setClickable(false);
+        } else {
+            holder.mButtonDec.setClickable(true);
+        }
 
 
         if (isEditMode) {
@@ -130,6 +124,8 @@ public class CartListAdapter extends BaseAdapter {
 
             mCheckBox.setOnCheckedChangeListener(this);
             mButtonInc.setOnClickListener(this);
+            mButtonDec.setOnClickListener(this);
+            mButtonDel.setOnClickListener(this);
         }
 
         public void setCartItem(CartItem cartItem) {
@@ -138,22 +134,31 @@ public class CartListAdapter extends BaseAdapter {
 
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            mCheckBox.setChecked(mCartItem.isChecked());
+            //数据改变之后及时将是实体类的数据更新
+            if (mCartItem != null) {
+                mCartItem.setChecked(isChecked);
+            }
         }
 
         @Override
         public void onClick(View v) {
-            int count = mCartItem.getCount();
             int id = v.getId();
             CartOperationEvent event = new CartOperationEvent();
             event.id = id;
             event.item = mCartItem;
-
+            // 专门封装一个事件类, 用于传递事件和数据
             EventBus.getDefault().post(event);
 
         }
     }
 
+    /**
+     * 切换当前选中状态
+     */
+    public void switchEditMode() {
+        isEditMode = !isEditMode;
+        notifyDataSetChanged();
+    }
 }
 
 

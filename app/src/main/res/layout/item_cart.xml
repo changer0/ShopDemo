@@ -2,7 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <!--
+        属性的值有三种：
+        beforeDescendants：viewgroup会优先其子类控件而获取到焦点
+        afterDescendants：viewgroup只有当其子类控件不需要获取焦点时才获取焦点
+        blocksDescendants：viewgroup会覆盖子类控件而直接获得焦点
+    -->
 
     <CheckBox
         android:id="@+id/item_cart_check"
