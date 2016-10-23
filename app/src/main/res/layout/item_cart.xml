@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <CheckBox
+        android:id="@+id/item_cart_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"/>
+
+    <ImageView
+        android:id="@+id/item_cart_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/item_cart_check"
+        android:src="@mipmap/ic_launcher"/>
+
+    <TextView
+        android:id="@+id/item_cart_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/item_cart_icon"
+        android:layout_toRightOf="@id/item_cart_icon"
+        android:maxLines="2"
+        android:text="iPhone 7s"/>
+
+    <TextView
+        android:id="@+id/item_cart_price"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/item_cart_name"
+        android:layout_below="@id/item_cart_name"
+        android:text="10000"/>
+
+    <Button
+        android:id="@+id/item_cart_dec"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_cart_icon"
+        android:layout_alignLeft="@id/item_cart_name"
+        android:text="-"/>
+
+    <TextView
+        android:id="@+id/item_cart_count"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/item_cart_dec"
+        android:layout_toRightOf="@id/item_cart_dec"
+        android:background="#0ff"
+        android:gravity="center"
+        android:text="1"/>
+
+    <Button
+        android:id="@+id/item_cart_inc"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/item_cart_dec"
+        android:layout_toRightOf="@id/item_cart_count"
+        android:text="+"/>
+
+
+    <Button
+        android:id="@+id/item_cart_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/item_cart_dec"
+        android:layout_alignParentRight="true"
+        android:text="X"/>
+
+</RelativeLayout>
